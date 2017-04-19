@@ -27,3 +27,11 @@ http.createServer((req, res) => {
 My IP address is ${ipAddress}
 `);
 }).listen(8080);
+
+// helper
+try {
+  fs.writeFileSync('app.pid', process.pid);
+} catch (e) {
+  console.error(e);
+}
+
