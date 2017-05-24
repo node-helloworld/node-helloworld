@@ -1,18 +1,18 @@
 {
   "name": "node-helloworld",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "Helloworld node application used for testing",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wojciechka/node-helloworld.git"
+    "url": "git+https://github.com/node-helloworld/node-helloworld.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wojciechka/node-helloworld/issues"
+    "url": "https://github.com/node-helloworld/node-helloworld/issues"
   },
-  "homepage": "https://github.com/wojciechka/node-helloworld#readme"
+  "homepage": "https://github.com/node-helloworld/node-helloworld#readme"
 }
