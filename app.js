@@ -46,7 +46,7 @@ http.createServer((req, res) => {
 </head>
 <body>
 <p>
-Howdy ${helloName}!
+Hello, ${helloName}! Nice to see you.
 </p>
 <p>
 My IP address is ${ipAddress}
