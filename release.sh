@@ -4,17 +4,18 @@
 
 set -eu
 
-owner="node-helloworld"
-repo="node-helloworld"
+owner=${GITHUB_OWNER:-node-helloworld}
+repo=${GITHUB_REPO:-node-helloworld}
 version=${1:-}
 desc=${2:-}
+name=${desc}
 commit=${3:-}
 token="${GITHUB_TOKEN}"
 
 mime_type="application/x-gzip"
 
 # trim leading "v" from version
-version=$(echo ${version} | sed 's/^v//')
+version=$(echo ${version} | sed 's/^v//;s/^/v/')
 
 usage() {
   echo "Usage: $0 version (description) (commit-id)"
@@ -28,10 +29,11 @@ fi
 
 if [ "x${desc}" = "x" ] ; then
   desc="Release of version ${version}"
+  name="${version}"
 fi
 
 if [ "x${commit}" = "x" ] ; then
-  commit="v${version}"
+  commit=${version}
 fi
 
 # TODO: check prerequisites
@@ -52,6 +54,8 @@ cleanup() {
 
 trap cleanup EXIT
 
+echo "Beginning release of version ${version} (name=${name} ; desc=${desc}) for ${owner} / ${repo} repository ..."
+
 # clone and add appropriate tag
 git clone git@github.com:${owner}/${repo}.git ${tmpdir}/clone
 cd ${tmpdir}/clone
@@ -60,7 +64,7 @@ commit_id=$(git rev-parse ${commit})
 git push --tags
 
 response=$(curl -sSLf -H "Authorization: token ${token}" \
-  --data "{\"tag_name\": \"${version}\",\"target_commitish\": \"${commit_id}\",\"name\": \"${version}\",\"body\": \"${desc}\",\"draft\": false,\"prerelease\": false}" \
+  --data "{\"tag_name\": \"${version}\",\"target_commitish\": \"${commit_id}\",\"name\": \"${name}\",\"body\": \"${desc}\",\"draft\": false,\"prerelease\": false}" \
   "https://api.github.com/repos/${owner}/${repo}/releases")
 release_id=$(echo "${response}" | jq -r .id)
 release_tgz=$(echo "${response}" | jq -r .tarball_url)
