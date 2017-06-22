@@ -4,7 +4,7 @@
 
 set -eu
 
-owner="wojciechka"
+owner="node-helloworld"
 repo="node-helloworld"
 version=${1:-}
 desc=${2:-}
