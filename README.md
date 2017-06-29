@@ -24,4 +24,3 @@ You can also release forked repositories by setting `GITHUB_OWNER` environment v
 ```bash
 GITHUB_OWNER=(yourname) ./release.sh "1.2.3" "Forked Fate"
 ```
-
