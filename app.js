@@ -10,7 +10,7 @@ let helloName = '(unknown)';
 // this may require net-tools system package or equivalent to work
 try {
   const ifconfigOutput = child_process.execSync('ifconfig').toString();
-  ipAddress = ifconfigOutput.match(/inet\s+addr:\s*(.*?)\s/)[1].trim();
+  ipAddress = ifconfigOutput.match(/inet\s*(.*?)\s/)[1].trim();
 } catch (e) {
   console.error(e);
 }
