@@ -71,7 +71,7 @@ release_tgz=$(echo "${response}" | jq -r .tarball_url)
 curl -sSLf "${release_tgz}" >${tmpfile}
 
 for platform in linux-x64 ; do
-  for distro in debian-8 debian-9 ; do
+  for distro in debian-9 debian-10; do
     asset_name="canary-${version}-${platform}-${distro}.tar.gz"
     response=$(curl -sSLf -H "Authorization: token ${token}" \
       -H "Content-Type: ${mime_type}" --data-binary @${tmpfile} \
